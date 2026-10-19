@@ -145,6 +145,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   };
 })();
 </script>
+<style id="global-quality-shield">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .ad-bottom, .ad-bottom ins {
+    min-height: 280px !important;
+    background: transparent !important;
+  }
+  :focus-visible {
+    outline: 2px solid #2563eb !important;
+    outline-offset: 2px !important;
+  }
+</style>
 </head>
 <body>
 
@@ -169,11 +185,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
       <div class="form-grid">
         <div>
           <label for="salePrice" class="lbl">Home Contract Sale Price ($)</label>
-          <input type="number" id="salePrice" class="input" value="450000" min="20000" step="10000">
+          <input type="number" id="salePrice" class="input" value="450000" min="20000" step="10000" inputmode="numeric">
         </div>
         <div>
           <label for="mortgagePayoff" class="lbl">Existing Mortgage Payoff ($)</label>
-          <input type="number" id="mortgagePayoff" class="input" value="220000" min="0" step="5000">
+          <input type="number" id="mortgagePayoff" class="input" value="220000" min="0" step="5000" inputmode="numeric">
           <div class="src" style="margin:2px 0 0">Balance owed to lender</div>
         </div>
       </div>
@@ -182,12 +198,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
       <div class="form-grid">
         <div>
           <label for="listingRate" class="lbl">Listing Agent Commission (%)</label>
-          <input type="number" id="listingRate" class="input" value="2.5" min="0" max="6" step="0.25">
+          <input type="number" id="listingRate" class="input" value="2.5" min="0" max="6" step="0.25" inputmode="numeric">
           <div class="src" style="margin:2px 0 0">Paid to seller listing broker</div>
         </div>
         <div>
           <label for="buyerAgentConcession" class="lbl">Buyer Agent Concession (%)</label>
-          <input type="number" id="buyerAgentConcession" class="input" value="2.5" min="0" max="6" step="0.25">
+          <input type="number" id="buyerAgentConcession" class="input" value="2.5" min="0" max="6" step="0.25" inputmode="numeric">
           <div class="src" style="margin:2px 0 0">Unbundled post-NAR settlement</div>
         </div>
       </div>
@@ -196,7 +212,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
       <div class="form-grid">
         <div>
           <label for="closingTaxes" class="lbl">Transfer Tax &amp; Title Escrow ($)</label>
-          <input type="number" id="closingTaxes" class="input" value="5700" min="0" step="250">
+          <input type="number" id="closingTaxes" class="input" value="5700" min="0" step="250" inputmode="numeric">
           <div class="src" style="margin:2px 0 0">~1% to 1.5% transfer, settlement</div>
         </div>
         <div>
