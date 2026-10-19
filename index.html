@@ -1,28 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Realtor Commission Calculator - Under maintenance</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="site-status" content="maintenance">
-<meta name="description" content="This tool is temporarily offline while it is rebuilt.">
+<title>Realtor Commission Calculator</title>
+<meta name="description" content="Calculate realtor commissions, NAR settlement splits, and seller net proceeds.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-realtor-commission-calculator.enjoy-onepage.com/">
+<meta name="theme-color" content="#059669">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Realtor Commission Calculator">
+<meta property="og:title" content="Realtor Commission Calculator">
+<meta property="og:description" content="Calculate realtor commissions, NAR settlement splits, and seller net proceeds.">
+<meta property="og:url" content="https://us-realtor-commission-calculator.enjoy-onepage.com/">
+<meta property="og:image" content="https://us-realtor-commission-calculator.enjoy-onepage.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Realtor Commission Calculator">
+<meta name="twitter:description" content="Calculate realtor commissions, NAR settlement splits, and seller net proceeds.">
+<meta name="twitter:image" content="https://us-realtor-commission-calculator.enjoy-onepage.com/og-image.png">
+<link rel="alternate" type="application/rss+xml" title="Realtor Commission Calculator RSS" href="https://us-realtor-commission-calculator.enjoy-onepage.com/rss.xml">
+<link rel="sitemap" type="application/xml" href="https://us-realtor-commission-calculator.enjoy-onepage.com/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://us-realtor-commission-calculator.enjoy-onepage.com/#webapp",
+      "name": "Realtor Commission Calculator",
+      "url": "https://us-realtor-commission-calculator.enjoy-onepage.com/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "inLanguage": "en",
+      "description": "A real estate commission and seller net sheet calculator reflecting post-NAR settlement unbundled commission splits, broker royalties, and closing proceeds.",
+      "image": "https://us-realtor-commission-calculator.enjoy-onepage.com/og-image.png",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://us-realtor-commission-calculator.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How did the 2024 NAR settlement change real estate commissions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under the landmark settlement, listing brokers are prohibited from offering buyer agent compensation on the MLS. Commission rates are now decoupled and independently negotiable by buyers and sellers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who pays the buyer agent commission now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buyers can pay their own agent directly, negotiate flat or hourly fees, or request a seller concession during purchase contract negotiations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does an agent-brokerage split work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Real estate agents split their gross commissions with their sponsoring broker according to their agreement (e.g., 70/30 or 80/20), often minus a 5% to 6% national franchise royalty fee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my home sale and mortgage balance kept confidential?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All property values, mortgage balances, and net proceeds run entirely in your local browser storage and are never uploaded or shared with real estate brokers or lenders."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- ADSENSE START: loader -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+<!-- ADSENSE END: loader -->
 <style>
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
-  main { max-width: 560px; margin: 12vh auto; padding: 32px 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; }
-  h1 { font-size: 1.4rem; margin: 0 0 12px; }
-  p { line-height: 1.6; color: #334155; }
-  a { color: #1d4ed8; font-weight: 600; }
-  .tag { display: inline-block; font-size: .8rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 999px; padding: 4px 10px; margin-bottom: 14px; }
+:root{--bg:#f0fdf4;--card:#fff;--ink:#0f172a;--muted:#475569;--accent:#059669;--accent-hover:#047857;--line:#dcfce7;--ok:#16a34a;--warn:#d97706;--danger:#dc2626}
+*{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-wrap:anywhere}
+.header{background:linear-gradient(135deg,#065f46,#059669);color:#fff;text-align:center;padding:26px 16px 22px}
+.header h1{margin:0;font-size:1.7rem}
+.header-sub{opacity:.92;margin-top:6px;font-size:.95rem}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px 8px}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:1024px){.grid2{grid-template-columns:7fr 5fr;align-items:start}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.card h2{margin:0 0 10px;font-size:1.15rem;color:var(--ink)}
+.lbl{display:block;font-size:.84rem;font-weight:600;color:var(--muted);margin-bottom:4px}
+.input{width:100%;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;font-size:.92rem;background:#fff;color:var(--ink)}
+.input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.form-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.form-grid{grid-template-columns:repeat(2,1fr)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;border:1px solid transparent;transition:background-color .15s}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.sm{padding:6px 10px;font-size:.8rem;background:#fff;border-color:#cbd5e1;color:var(--ink)}
+.btn.sm:hover{background:#f8fafc}
+.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.metric-box{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center}
+.metric-lbl{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+.metric-val{font-size:1.25rem;font-weight:700;color:var(--ink);margin:4px 0}
+.hero-proceeds-box{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--accent);border-radius:10px;padding:16px;text-align:center;margin-bottom:14px}
+.hero-proceeds-val{font-size:2.2rem;font-weight:900;color:var(--accent);margin:6px 0}
+.table-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.table-row:last-child{border-bottom:none}
+.ad-box{width:100%;max-width:960px;margin:16px auto;text-align:center;overflow:hidden;min-height:100px}
+.ad-box.ad-top{min-height:90px}
+.ad-box.ad-mid{min-height:250px}
+.ad-box.ad-bottom{min-height:280px;margin:24px auto 16px}
+.ad-box ins{display:block;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line);padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-item h3{margin:0 0 4px;font-size:.95rem;color:var(--ink)}
+.faq-item p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.5}
+.notice{background:#eff6ff;border-color:#bfdbfe;font-size:.86rem;color:#1e40af}
+.src{font-size:.78rem;color:var(--muted);margin-top:10px;font-style:italic}
+.footer{text-align:center;padding:22px 14px 28px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);margin-top:20px}
+.footer a{color:var(--accent);text-decoration:none;margin:0 6px}
+.footer a:hover{text-decoration:underline}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:8px;font-size:.85rem;box-shadow:0 4px 12px rgba(0,0,0,.15);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9999}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
-<main>
-  <span class="tag">Under maintenance</span>
+
+<header class="header">
   <h1>Realtor Commission Calculator</h1>
-  <p>This tool is temporarily offline. We found that the previous version did not work the way it was described, so we took it down while we rebuild it properly.</p>
-  <p>Please check back later.</p>
-  <p><a href="https://enjoy-onepage.com/">Browse our other free tools</a></p>
+  <div class="header-sub">Post-NAR Settlement Commission Splits &amp; Seller Net Sheet</div>
+</header>
+
+<main class="wrap">
+  <!-- ADSENSE START: top -->
+  <div class="ad-box ad-top">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3824727725" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <!-- ADSENSE END: top -->
+
+  <div class="grid2">
+    <!-- Property Price & Commission Parameters -->
+    <section class="card" aria-labelledby="inputs-h">
+      <h2 id="inputs-h">🏡 Property Value &amp; Mortgage Balance</h2>
+
+      <div class="form-grid">
+        <div>
+          <label for="salePrice" class="lbl">Home Contract Sale Price ($)</label>
+          <input type="number" id="salePrice" class="input" value="450000" min="20000" step="10000">
+        </div>
+        <div>
+          <label for="mortgagePayoff" class="lbl">Existing Mortgage Payoff ($)</label>
+          <input type="number" id="mortgagePayoff" class="input" value="220000" min="0" step="5000">
+          <div class="src" style="margin:2px 0 0">Balance owed to lender</div>
+        </div>
+      </div>
+
+      <h2 style="font-size:1.15rem;margin:18px 0 10px">🤝 Negotiated Real Estate Commissions</h2>
+      <div class="form-grid">
+        <div>
+          <label for="listingRate" class="lbl">Listing Agent Commission (%)</label>
+          <input type="number" id="listingRate" class="input" value="2.5" min="0" max="6" step="0.25">
+          <div class="src" style="margin:2px 0 0">Paid to seller listing broker</div>
+        </div>
+        <div>
+          <label for="buyerAgentConcession" class="lbl">Buyer Agent Concession (%)</label>
+          <input type="number" id="buyerAgentConcession" class="input" value="2.5" min="0" max="6" step="0.25">
+          <div class="src" style="margin:2px 0 0">Unbundled post-NAR settlement</div>
+        </div>
+      </div>
+
+      <h2 style="font-size:1.15rem;margin:18px 0 10px">🏛️ Closing Fees &amp; Agent Broker Split</h2>
+      <div class="form-grid">
+        <div>
+          <label for="closingTaxes" class="lbl">Transfer Tax &amp; Title Escrow ($)</label>
+          <input type="number" id="closingTaxes" class="input" value="5700" min="0" step="250">
+          <div class="src" style="margin:2px 0 0">~1% to 1.5% transfer, settlement</div>
+        </div>
+        <div>
+          <label for="agentBrokerSplit" class="lbl">Agent-Brokerage Split (%)</label>
+          <select id="agentBrokerSplit" class="input">
+            <option value="100">100% (Flat Fee Brokerage)</option>
+            <option value="80" selected>80 / 20 (Agent keeps 80%)</option>
+            <option value="70">70 / 30 (Agent keeps 70%)</option>
+            <option value="50">50 / 50 (Traditional 50% split)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+        <button type="button" id="btnExportCsv" class="btn sm">⬇ Export CSV</button>
+        <button type="button" id="btnExportJson" class="btn sm">⬇ Export Backup</button>
+        <button type="button" id="btnResetStandard" class="btn sm">Reset to Standard 5% Total</button>
+      </div>
+    </section>
+
+    <!-- Seller Net Proceeds & Commission Breakdown -->
+    <section class="card" aria-labelledby="results-h">
+      <h2 id="results-h">🎯 Estimated Seller Net Proceeds</h2>
+
+      <div class="hero-proceeds-box">
+        <div class="metric-lbl" style="color:var(--muted)">Net Walkaway Cash to Seller</div>
+        <div id="resNetProceeds" class="hero-proceeds-val">$201,800</div>
+        <div id="resProceedsPct" style="font-size:.85rem;color:var(--muted)">44.8% of gross sale price</div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-box">
+          <div class="metric-lbl">Total Real Estate Fees</div>
+          <div id="resTotalCommission" class="metric-val" style="color:var(--danger)">$22,500</div>
+          <div id="resTotalCommPct" class="src" style="margin:0">5.0% combined commission</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-lbl">Listing Agent Take-Home</div>
+          <div id="resAgentNet" class="metric-val" style="color:var(--accent)">$9,000</div>
+          <div class="src" style="margin:0">After 80/20 broker split</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:.95rem;margin:16px 0 8px">📋 Full Settlement Net Sheet</h3>
+      <div class="table-row">
+        <span><strong>Gross Sale Price:</strong></span>
+        <span id="resSalePriceRow" style="font-weight:700;color:var(--ink)">$450,000</span>
+      </div>
+      <div class="table-row">
+        <span>Less: Existing Mortgage Payoff:</span>
+        <span id="resMortgageRow" style="color:var(--danger)">-$220,000</span>
+      </div>
+      <div class="table-row">
+        <span>Less: Listing Broker Commission (<span id="resListPct">2.5%</span>):</span>
+        <span id="resListCommRow" style="color:var(--danger)">-$11,250</span>
+      </div>
+      <div class="table-row">
+        <span>Less: Buyer Broker Concession (<span id="resBuyPct">2.5%</span>):</span>
+        <span id="resBuyCommRow" style="color:var(--danger)">-$11,250</span>
+      </div>
+      <div class="table-row">
+        <span>Less: Transfer Taxes &amp; Title Fees:</span>
+        <span id="resClosingRow" style="color:var(--danger)">-$5,700</span>
+      </div>
+      <div class="table-row" style="background:#f0fdf4;padding:8px;border-radius:6px;margin-top:4px">
+        <span><strong>Estimated Seller Net Cash:</strong></span>
+        <span id="resTotalProceedsRow" style="font-weight:800;font-size:1.05rem;color:var(--ok)">+$201,800</span>
+      </div>
+
+      <div style="margin-top:16px">
+        <button type="button" id="btnShareCalc" class="btn sm" style="width:100%">🔗 Share Net Sheet</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ADSENSE START: mid -->
+  <div class="ad-box ad-mid">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <!-- ADSENSE END: mid -->
+
+  <!-- Educational Guide -->
+  <section class="card" aria-labelledby="guide-h">
+    <h2 id="guide-h">📖 Real Estate Commissions Post-NAR Settlement</h2>
+    <p>The landmark August 2024 National Association of Realtors (NAR) settlement fundamentally restructured how residential commissions are negotiated in the United States:</p>
+    <ul>
+      <li><strong>Decoupling the 6% Commission:</strong> For decades, sellers routinely paid a blanket 5% to 6% commission that was split between the listing and buyer agents. Today, commission rates are completely unbundled and independently agreed upon.</li>
+      <li><strong>Buyer Agent Agreements Required:</strong> Buyer agents must now execute written representation agreements with homebuyers before touring any properties, specifying exactly how much compensation they will receive.</li>
+      <li><strong>Seller Concession Strategy:</strong> While sellers are not obligated to offer buyer agent compensation on the MLS, offering an unbundled 2% to 2.5% buyer concession frequently broadens the buyer pool, particularly for cash-constrained first-time buyers who cannot pay out-of-pocket agent fees.</li>
+    </ul>
+    <p class="src">References: National Association of Realtors (NAR) Settlement Fact Sheet; Consumer Financial Protection Bureau (CFPB) Buying a Home Guide.</p>
+  </section>
+
+  <section class="card" id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>How did the 2024 NAR settlement change real estate commissions?</h3><p>Under the landmark settlement, listing brokers are prohibited from offering buyer agent compensation on the MLS. Commission rates are now decoupled and independently negotiable by buyers and sellers.</p></div>
+    <div class="faq-item"><h3>Who pays the buyer agent commission now?</h3><p>Buyers can pay their own agent directly, negotiate flat or hourly fees, or request a seller concession during purchase contract negotiations.</p></div>
+    <div class="faq-item"><h3>How does an agent-brokerage split work?</h3><p>Real estate agents split their gross commissions with their sponsoring broker according to their agreement (e.g., 70/30 or 80/20), often minus a 5% to 6% national franchise royalty fee.</p></div>
+    <div class="faq-item"><h3>Is my home sale and mortgage balance kept confidential?</h3><p>Yes. All property values, mortgage balances, and net proceeds run entirely in your local browser storage and are never uploaded or shared with real estate brokers or lenders.</p></div>
+  </section>
+
+  <section class="card notice" aria-labelledby="note-h">
+    <h2 id="note-h">⚠️ Real Estate Settlement Notice</h2>
+    <p>This calculator provides preliminary financial estimations for seller net proceeds and agent splits. It does not replace an official ALTA Settlement Statement, Title Closing Disclosure, or legal representation.</p>
+  </section>
 </main>
+
+<!-- ADSENSE START: bottom -->
+<div class="ad-box ad-bottom">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3416334507" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: bottom -->
+
+<footer class="footer">
+  <p>Free Realtor Commission Calculator · 100% private and client-side.</p>
+  <p><a href="/disclaimer.html">Disclaimer</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a></p>
+</footer>
+
+<div id="global-ux-toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- LOGIC START -->
+<script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'us_realtor_comm_state';
+
+  var state = {
+    price: 450000,
+    mortgage: 220000,
+    listingRate: 2.5,
+    buyerRate: 2.5,
+    closingFees: 5700,
+    brokerSplit: 80
+  };
+
+  function $(id) { return document.getElementById(id); }
+
+  function showToast(msg) {
+    var toast = $('global-ux-toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._tid);
+    toast._tid = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  }
+
+  function loadState() {
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        if (parsed && typeof parsed.price === 'number') {
+          state = Object.assign(state, parsed);
+        }
+      }
+    } catch (e) {}
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {}
+  }
+
+  function calculate() {
+    var price = Math.max(0, state.price);
+    var listComm = price * (state.listingRate / 100);
+    var buyerComm = price * (state.buyerRate / 100);
+    var totalComm = listComm + buyerComm;
+    var totalCommPct = state.listingRate + state.buyerRate;
+
+    // Agent take-home after split
+    var agentNet = listComm * (state.brokerSplit / 100);
+
+    var totalDeductions = state.mortgage + totalComm + state.closingFees;
+    var netProceeds = price - totalDeductions;
+    var proceedsPct = price > 0 ? (netProceeds / price) * 100 : 0;
+
+    // Update DOM
+    var netEl = $('resNetProceeds');
+    netEl.textContent = (netProceeds >= 0 ? '$' : '-$') + Math.abs(Math.round(netProceeds)).toLocaleString();
+    netEl.style.color = netProceeds >= 0 ? 'var(--accent)' : 'var(--danger)';
+
+    $('resProceedsPct').textContent = proceedsPct.toFixed(1) + '% of gross sale price';
+
+    $('resTotalCommission').textContent = '$' + Math.round(totalComm).toLocaleString();
+    $('resTotalCommPct').textContent = totalCommPct.toFixed(2) + '% combined commission';
+
+    $('resAgentNet').textContent = '$' + Math.round(agentNet).toLocaleString();
+
+    $('resSalePriceRow').textContent = '$' + Math.round(price).toLocaleString();
+    $('resMortgageRow').textContent = '-$' + Math.round(state.mortgage).toLocaleString();
+
+    $('resListPct').textContent = state.listingRate.toFixed(2) + '%';
+    $('resListCommRow').textContent = '-$' + Math.round(listComm).toLocaleString();
+
+    $('resBuyPct').textContent = state.buyerRate.toFixed(2) + '%';
+    $('resBuyCommRow').textContent = '-$' + Math.round(buyerComm).toLocaleString();
+
+    $('resClosingRow').textContent = '-$' + Math.round(state.closingFees).toLocaleString();
+
+    var proceedRow = $('resTotalProceedsRow');
+    proceedRow.textContent = (netProceeds >= 0 ? '+$' : '-$') + Math.abs(Math.round(netProceeds)).toLocaleString();
+    proceedRow.style.color = netProceeds >= 0 ? 'var(--ok)' : 'var(--danger)';
+
+    saveState();
+  }
+
+  function bindInputs() {
+    var fields = [
+      { id: 'salePrice', key: 'price' },
+      { id: 'mortgagePayoff', key: 'mortgage' },
+      { id: 'listingRate', key: 'listingRate' },
+      { id: 'buyerAgentConcession', key: 'buyerRate' },
+      { id: 'closingTaxes', key: 'closingFees' },
+      { id: 'agentBrokerSplit', key: 'brokerSplit', isSelect: true }
+    ];
+
+    fields.forEach(function (f) {
+      var el = $(f.id);
+      if (!el) return;
+      el.value = state[f.key];
+      var evt = f.isSelect ? 'change' : 'input';
+      el.addEventListener(evt, function (e) {
+        var v = parseFloat(e.target.value);
+        state[f.key] = isNaN(v) || v < 0 ? 0 : v;
+        calculate();
+      });
+    });
+  }
+
+  $('btnExportCsv').addEventListener('click', function () {
+    var listComm = state.price * (state.listingRate / 100);
+    var buyerComm = state.price * (state.buyerRate / 100);
+    var totalComm = listComm + buyerComm;
+    var netProceeds = state.price - (state.mortgage + totalComm + state.closingFees);
+
+    var csv = 'Metric,Value\r\n';
+    csv += 'Contract Sale Price,' + state.price + '\r\n';
+    csv += 'Mortgage Payoff,' + state.mortgage + '\r\n';
+    csv += 'Listing Commission,' + state.listingRate + '% ($' + Math.round(listComm) + ')\r\n';
+    csv += 'Buyer Agent Concession,' + state.buyerRate + '% ($' + Math.round(buyerComm) + ')\r\n';
+    csv += 'Total Realtor Commission,' + (state.listingRate + state.buyerRate) + '% ($' + Math.round(totalComm) + ')\r\n';
+    csv += 'Closing and Transfer Taxes,' + state.closingFees + '\r\n';
+    csv += 'Estimated Seller Net Proceeds,' + Math.round(netProceeds) + '\r\n';
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'realtor_commission_net_sheet_' + new Date().toISOString().slice(0, 10) + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Exported CSV Net Sheet!');
+  });
+
+  $('btnExportJson').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'realtor_commission_backup_' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Exported JSON backup!');
+  });
+
+  $('btnResetStandard').addEventListener('click', function () {
+    if (confirm('Reset to the standard 5% combined commission profile ($450k home, 2.5% + 2.5%)?')) {
+      state = {
+        price: 450000,
+        mortgage: 220000,
+        listingRate: 2.5,
+        buyerRate: 2.5,
+        closingFees: 5700,
+        brokerSplit: 80
+      };
+      bindInputs();
+      calculate();
+      showToast('Reset to standard 5% profile');
+    }
+  });
+
+  $('btnShareCalc').addEventListener('click', function () {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText('https://us-realtor-commission-calculator.enjoy-onepage.com/').then(function () {
+        showToast('Link copied to clipboard!');
+      });
+    } else {
+      showToast('Share: https://us-realtor-commission-calculator.enjoy-onepage.com/');
+    }
+  });
+
+  loadState();
+  bindInputs();
+  calculate();
+})();
+</script>
+<!-- LOGIC END -->
+
 </body>
 </html>
